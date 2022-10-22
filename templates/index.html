@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Data Visualization</title>
+	<link href="./static/css/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="header">
+        <img src={{ url_for('static', filename='howard_logo.svg') }}>   
+    </div>
+    <div class="main">
+        <div class="options">
+            <form method="post" action="/submitt">
+                <input type="submit" name="submit_button" value="Option 1">
+                <input type="submit" name="submit_button" value="Option 2">
+                <input type="submit" name="submit_button" value="Option 3">
+                <input type="submit" name="submit_button" value="Option 4">
+            </form>
+        </div>
+        {% if not imgSrc %}
+            <p>Graphs will be displayed here once you choose a option.</p>
+        {% endif %}
+        <div class="diagram">
+            {% if returnVal %}
+                {% for i in returnVal %}
+                    <p>{{i}}</p>
+                {% endfor %}
+            {% else %}
+                <!-- <p>{{imgSrc}}</p> -->
+                <img src={{imgSrc}}>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
